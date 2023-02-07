@@ -1,4 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 export default function Message({ message }) {
   const isMyMessage = () => {
@@ -15,7 +19,7 @@ export default function Message({ message }) {
       ]}
     >
       <Text>{message.text}</Text>
-      <Text style={styles.time}>{message.createdAt}</Text>
+      <Text style={styles.time}>{dayjs(message.createdAt).fromNow(true)}</Text>
     </View>
   );
 }
